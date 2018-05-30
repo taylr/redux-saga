@@ -39,12 +39,18 @@ export const is = {
 }
 
 export const object = {
-  assign(target, source) {
-    for (let i in source) {
-      if (hasOwn(source, i)) {
-        target[i] = source[i]
+  assign: Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (hasOwn(source, key)) {
+          target[key] = source[key];
+        }
       }
     }
+
+    return target;
   },
 }
 
