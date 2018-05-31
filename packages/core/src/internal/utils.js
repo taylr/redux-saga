@@ -204,3 +204,9 @@ export const cloneableGenerator = generatorFunc => (...args) => {
     throw: exception => gen.throw(exception),
   }
 }
+
+export function or(...fns){
+  return function(value){
+    return fns.some(fn => fn(value))
+  }
+}

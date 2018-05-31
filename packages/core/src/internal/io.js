@@ -1,5 +1,5 @@
 import { IO, SELF_CANCELLATION } from './symbols'
-import { delay as delayUtil, is, identity, check, createSetContextWarning } from './utils'
+import { delay as delayUtil, is, or, identity, check, createSetContextWarning } from './utils'
 
 const TAKE = 'TAKE'
 const PUT = 'PUT'
@@ -193,7 +193,7 @@ export function flush(channel) {
 
 export function getContext(prop) {
   if (process.env.NODE_ENV === 'development') {
-    check(prop, is.string, `getContext(prop): argument ${prop} is not a string`)
+    check(prop, or(is.string, is.symbol), `getContext(prop): argument ${String(prop)} is not a string or a Symbol`)
   }
 
   return effect(GET_CONTEXT, prop)

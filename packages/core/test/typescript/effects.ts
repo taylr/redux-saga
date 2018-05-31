@@ -681,6 +681,7 @@ function* testGetContext(): SagaIterator {
   yield getContext({});
 
   yield getContext('prop');
+  yield getContext(Symbol('a'));
 }
 
 function* testSetContext(): SagaIterator {
