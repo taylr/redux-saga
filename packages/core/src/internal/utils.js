@@ -1,4 +1,4 @@
-import { CANCEL, MULTICAST, SAGA_ACTION, TASK, TASK_CANCEL, TERMINATE } from './symbols'
+import { CANCEL, MULTICAST, TASK, TASK_CANCEL, TERMINATE } from './symbols'
 
 export const konst = v => () => v
 export const kTrue = konst(true)
@@ -175,9 +175,6 @@ export const internalErr = err =>
 
 export const createSetContextWarning = (ctx, props) =>
   `${ctx ? ctx + '.' : ''}setContext(props): argument ${props} is not a plain object`
-
-export const wrapSagaDispatch = dispatch => action =>
-  dispatch(Object.defineProperty(action, SAGA_ACTION, { value: true }))
 
 export const cloneableGenerator = generatorFunc => (...args) => {
   const history = []
